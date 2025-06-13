@@ -1,4 +1,4 @@
-import { ZapIcon } from "lucide-react";
+import { PhoneCall, ZapIcon } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
@@ -12,15 +12,19 @@ const Footer = () => {
           {/* Logo and Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="p-1 bg-primary/10 rounded">
-                <ZapIcon className="w-4 h-4 text-primary" />
+              <div className="p-1 rounded">
+                <img
+                  src="/logo.png"
+                  alt="FitMentor Logo"
+                  className="w-10 h-10 object-contain"
+                />
               </div>
               <span className="text-xl font-bold font-mono">
-                code<span className="text-primary">flex</span>.ai
+                Fit<span className="text-primary">Bot</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} codeflex.ai - All rights reserved
+              © {new Date().getFullYear()} FitBot - All rights reserved
             </p>
           </div>
 
@@ -65,9 +69,11 @@ const Footer = () => {
           </div>
 
           {/* Status */}
-          <div className="flex items-center gap-2 px-3 py-2 border border-border rounded-md bg-background/50">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-            <span className="text-xs font-mono">SYSTEM OPERATIONAL</span>
+          <div className="flex items-center gap-2 px-3 py-2 border border-border rounded-md bg-background/50 whitespace-nowrap">
+            <PhoneCall className="w-5 h-5 text-primary" />
+            <span className="text-xs font-mono">
+              One Call Away from Your Fitness Goals.
+            </span>
           </div>
         </div>
       </div>

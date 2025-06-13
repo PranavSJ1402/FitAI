@@ -12,14 +12,19 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border py-3">
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="p-1 bg-primary/10 rounded">
-            <ZapIcon className="w-4 h-4 text-primary" />
-          </div>
-          <span className="text-xl font-bold font-mono">
-            code<span className="text-primary">flex</span>.ai
-          </span>
-        </Link>
+       <Link href="/" className="flex items-center gap-2">
+  <div className="p-1 rounded">
+    <img
+      src="/logo.png"
+      alt="FitMentor Logo"
+      className="w-10 h-10 object-contain"
+    />
+  </div>
+  <span className="text-xl font-bold font-mono">
+    Fit<span className="text-primary">Bot</span>
+  </span>
+</Link>
+
 
         {/* NAVIGATION */}
         <nav className="flex items-center gap-5">

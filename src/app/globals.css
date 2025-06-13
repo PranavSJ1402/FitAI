@@ -43,6 +43,31 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Stardos Stencil as base font */
+body,
+p,
+span,
+label {
+  font-family: "Stardos Stencil", system-ui;
+}
+
+/* Merienda for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Merienda", cursive;
+}
+
+/* Pixelify Sans for buttons and links */
+button,
+a {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+/* Winky Rough for inputs and special headings */
+input,
+textarea {
+  font-family: "Winky Rough", serif;
+}
+
 :root {
   /* Base Variables */
   --radius: 0.625rem;
