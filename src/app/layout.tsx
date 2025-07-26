@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FitBot AI trainer",
+  title: "FitBot AI",
   description: "A modern fitness AI platform to get jacked for free.",
 };
 
