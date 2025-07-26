@@ -1,69 +1,20 @@
 "use client";
 
-import TerminalOverlay from "@/components/TerminalOverlay";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import HowItWorks from "@/components/Howitworks";
 import DailyTip from "@/components/Tips";
 import BenefitsSection from "@/components/Features";
 import PricingSection from "@/components/Pricing";
 import FAQSection from "@/components/FAQ";
 import RevealOnScroll from "@/components/RevealonScroll";
-const randomDigit = () => Math.floor(Math.random() * 10);
-
-// Hook with TS typing
-function useTechReveal(value: string | number, duration = 2000): string {
-  const strValue = String(value);
-  const [display, setDisplay] = useState<string>(strValue);
-
-  useEffect(() => {
-    let startTime = Date.now();
-    let animationFrameId: number;
-
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      if (elapsed >= duration) {
-        setDisplay(strValue);
-        if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
-        return;
-      }
-
-      const revealedLength = Math.floor((elapsed / duration) * strValue.length);
-      let newDisplay = "";
-
-      for (let i = 0; i < strValue.length; i++) {
-        if (i < revealedLength || isNaN(Number(strValue[i]))) {
-          newDisplay += strValue[i];
-        } else {
-          newDisplay += randomDigit();
-        }
-      }
-
-      setDisplay(newDisplay);
-      animationFrameId = window.requestAnimationFrame(animate);
-    };
-
-    animationFrameId = window.requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
-    };
-  }, [strValue, duration]);
-
-  return display;
-}
 
 const HomePage = () => {
-  const plansGenerated = useTechReveal("50+", 2000);
-  const generation = useTechReveal("3 min");
-  const personalized = useTechReveal("100%", 2000);
-
   return (
     <RevealOnScroll>
       <div className="flex flex-col min-h-screen text-foreground overflow-hidden">
-        <section className="relative z-10 py-24 flex-grow">
+        <section className="relative z-10 py-12 flex-grow">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative">
               <div className="absolute -top-10 left-0 w-40 h-40 border-l-2 border-t-2" />
@@ -71,7 +22,9 @@ const HomePage = () => {
               <div className="lg:col-span-7 space-y-8 relative">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                   <div>
-                    <span className="stardos-stencil text-foreground">Transform</span>
+                    <span className="stardos-stencil text-foreground">
+                      Transform
+                    </span>
                   </div>
                   <div>
                     <span className="text-primary">Your Body</span>
@@ -95,25 +48,23 @@ const HomePage = () => {
                 {/* STATS */}
                 <div className="flex items-center gap-10 py-6 font-mono">
                   <div className="flex flex-col">
-                    <div className="text-2xl text-primary">
-                      {plansGenerated}
-                    </div>
-                    <div className="text-xs uppercase tracking-wider">
-                      PLANS GENERATED
+                    <div className="text-xl text-primary">Workout + Diet</div>
+                    <div className="text-x uppercase tracking-wider text-muted-foreground">
+                      PLANS
                     </div>
                   </div>
                   <div className="h-12 w-px bg-gradient-to-b from-transparent via-border to-transparent"></div>
                   <div className="flex flex-col">
-                    <div className="text-2xl text-primary">{generation}</div>
-                    <div className="text-xs uppercase tracking-wider">
-                      GENERATION
+                    <div className="text-xl text-primary">Voice-Based</div>
+                    <div className="text-x uppercase tracking-wider text-muted-foreground">
+                      AI INTERACTION
                     </div>
                   </div>
                   <div className="h-12 w-px bg-gradient-to-b from-transparent via-border to-transparent"></div>
                   <div className="flex flex-col">
-                    <div className="text-2xl text-primary">{personalized}</div>
-                    <div className="text-xs uppercase tracking-wider">
-                      PERSONALIZED
+                    <div className="text-xl text-primary">Personalized</div>
+                    <div className="text-x uppercase tracking-wider text-muted-foreground">
+                      GENERATED PLANS
                     </div>
                   </div>
                 </div>

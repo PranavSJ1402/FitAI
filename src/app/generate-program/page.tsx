@@ -46,7 +46,8 @@ const GenerateProgramPage = () => {
   // auto-scroll messages
   useEffect(() => {
     if (messageContainerRef.current) {
-      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
@@ -155,7 +156,8 @@ const GenerateProgramPage = () => {
             <span className="text-primary uppercase">Fitness Program</span>
           </h1>
           <p className="text-muted-foreground mt-2">
-            Have a voice conversation with our AI assistant to create your personalized plan
+            Have a voice conversation with our AI assistant to create your
+            personalized plan
           </p>
         </div>
 
@@ -180,7 +182,9 @@ const GenerateProgramPage = () => {
                       }`}
                       style={{
                         animationDelay: `${i * 0.1}s`,
-                        height: isSpeaking ? `${Math.random() * 50 + 20}%` : "5%",
+                        height: isSpeaking
+                          ? `${Math.random() * 50 + 20}%`
+                          : "5%",
                       }}
                     />
                   ))}
@@ -206,7 +210,9 @@ const GenerateProgramPage = () => {
               </div>
 
               <h2 className="text-xl font-bold text-foreground">FitBot AI</h2>
-              <p className="text-sm text-muted-foreground mt-1">Fitness & Diet Coach</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Fitness & Diet Coach
+              </p>
 
               {/* SPEAKING INDICATOR */}
 
@@ -235,7 +241,9 @@ const GenerateProgramPage = () => {
           </Card>
 
           {/* USER CARD */}
-          <Card className={`bg-card/90 backdrop-blur-sm border overflow-hidden relative`}>
+          <Card
+            className={`bg-card/90 backdrop-blur-sm border overflow-hidden relative`}
+          >
             <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
               {/* User Image */}
               <div className="relative size-32 mb-4">
@@ -249,11 +257,15 @@ const GenerateProgramPage = () => {
 
               <h2 className="text-xl font-bold text-foreground">You</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                {user ? (user.firstName + " " + (user.lastName || "")).trim() : "Guest"}
+                {user
+                  ? (user.firstName + " " + (user.lastName || "")).trim()
+                  : "Guest"}
               </p>
 
               {/* User Ready Text */}
-              <div className={`mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-card border`}>
+              <div
+                className={`mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-card border`}
+              >
                 <div className={`w-2 h-2 rounded-full bg-muted`} />
                 <span className="text-xs text-muted-foreground">Ready</span>
               </div>
@@ -261,28 +273,44 @@ const GenerateProgramPage = () => {
           </Card>
         </div>
 
-        {/* MESSAGE COINTER  */}
+        {/* MESSAGE CONTAINER */}
         {messages.length > 0 && (
           <div
             ref={messageContainerRef}
             className="w-full bg-card/90 backdrop-blur-sm border border-border rounded-xl p-4 mb-8 h-64 overflow-y-auto transition-all duration-300 scroll-smooth"
           >
             <div className="space-y-3">
-              {messages.map((msg, index) => (
-                <div key={index} className="message-item animate-fadeIn">
-                  <div className="font-semibold text-xs text-muted-foreground mb-1">
-                    {msg.role === "assistant" ? "FitBot AI" : "You"}:
+              {messages.map((msg, index) => {
+                const isUser = msg.role !== "assistant";
+                return (
+                  <div
+                    key={index}
+                    className={`flex ${
+                      isUser ? "justify-end" : "justify-start"
+                    } animate-fadeIn`}
+                  >
+                    <div
+                      className={`max-w-[70%] rounded-xl p-3 text-sm ${
+                        isUser
+                          ? "bg-primary text-primary-foreground rounded-br-none"
+                          : "bg-muted text-muted-foreground rounded-bl-none"
+                      }`}
+                    >
+                      <div className="text-[10px] font-semibold mb-1 opacity-70">
+                        {isUser ? "You" : "FitBot AI"}
+                      </div>
+                      <p className="text-foreground">{msg.content}</p>
+                    </div>
                   </div>
-                  <p className="text-foreground">{msg.content}</p>
-                </div>
-              ))}
+                );
+              })}
 
               {callEnded && (
-                <div className="message-item animate-fadeIn">
-                  <div className="font-semibold text-xs text-primary mb-1">System:</div>
-                  <p className="text-foreground">
-                    Your fitness program has been created! Redirecting to your profile...
-                  </p>
+                <div className="flex justify-center animate-fadeIn">
+                  <div className="bg-green-100 text-green-800 p-3 rounded-lg text-xs font-medium">
+                    Your fitness program has been created! Redirecting to your
+                    profile...
+                  </div>
                 </div>
               )}
             </div>

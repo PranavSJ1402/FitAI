@@ -1,4 +1,4 @@
-import { PhoneCall, ZapIcon } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
